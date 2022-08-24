@@ -41,3 +41,16 @@ def sum_of(A: list, B: list):
         result.append(row_result)
 
     return result
+
+
+def identity_matrix(rows: int, columns: int):
+    """
+    Create an identity matrix with given size
+    """
+    result = []
+    for row in range(rows):
+        row_result = []
+        for column in range(columns):
+            row_result.append(1 if row == column else 0)
+        result.append(row_result)
+    return result

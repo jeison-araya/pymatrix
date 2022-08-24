@@ -7,6 +7,7 @@ from app import pymatrix
 
 class TestPyMatrix(unittest.TestCase):
     """Some test cases for pymatrix function"""
+
     def setUp(self):
         """Prepare testing data"""
         self.A = [[2, 1, -1], [0, 2, 3]]
@@ -27,3 +28,14 @@ class TestPyMatrix(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, 'Must have the same size') as _:
             print(pymatrix.sum_of(A=self.A, B=B), [[5, 3, -1], [-10, -2, 7]])
+
+    def test_identity_matrix(self):
+        """Testing the identity matrix of two given matrix"""
+        A = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]  # 3x3
+        self.assertEqual(pymatrix.identity_matrix(rows=3, columns=3), A)
+
+        B = [[1, 0, 0], [0, 1, 0], [0, 0, 1], [0, 0, 0]]  # 4x3
+        self.assertEqual(pymatrix.identity_matrix(rows=4, columns=3), B)
+
+        C = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0]]  # 3x4
+        self.assertEqual(pymatrix.identity_matrix(rows=3, columns=4), C)
