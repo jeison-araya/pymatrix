@@ -54,3 +54,21 @@ def identity_matrix(rows: int, columns: int):
             row_result.append(1 if row == column else 0)
         result.append(row_result)
     return result
+
+
+def scalar_multiplication(A: list, c: float) -> list:
+    """
+    Scalar multiplication of A
+    """
+    size = size_of(matrix=A)
+
+    result = []
+
+    for row in range(size[0]):
+        row_result = []
+        for col in range(size[1]):
+            row_result.append(A[row][col] * c)
+
+        result.append(row_result)
+
+    return result

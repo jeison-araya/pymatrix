@@ -39,3 +39,11 @@ class TestPyMatrix(unittest.TestCase):
 
         C = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0]]  # 3x4
         self.assertEqual(pymatrix.identity_matrix(rows=3, columns=4), C)
+
+    def test_scalar_multiplication(self):
+        """Testing the scalar multiplication of given matrix"""
+        self.assertEqual(pymatrix.scalar_multiplication(A=self.A, c=2),
+                         [[4, 2, -2], [0, 4, 6]])
+
+        self.assertEqual(pymatrix.scalar_multiplication(A=self.A, c=0.5),
+                         [[1, 0.5, -0.5], [0, 1, 1.5]])
