@@ -47,3 +47,27 @@ def scalar_multiplication(A: list, c: float) -> list:
     """
     size = size_of(matrix=A)
     return [[A[row][col] * c for col in range(size[1])] for row in range(size[0])]
+
+
+def matrix_product(A: list, B: list) -> list:
+    """
+    Matrix product of A x B
+
+    A(nxm) => a[i][j]
+    B(mxp) => b[i][j]
+
+    Raise:
+    - ValueError: Number of columns of A must equal to number of rows of B.
+
+    returns
+      C(nxp) = A[i] * B[j]
+    """
+    size_a = size_of(matrix=A)
+    size_b = size_of(matrix=B)
+
+    if size_a[1] != size_b[0]:
+        raise ValueError(
+            'Number of columns of A must equal to number of rows of B')
+
+    return [[sum(A[i][x] * B[x][j] for x in range(size_a[1]))
+             for j in range(size_b[1])] for i in range(size_a[0])]

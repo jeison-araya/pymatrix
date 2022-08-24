@@ -27,7 +27,7 @@ class TestPyMatrix(unittest.TestCase):
         B = [[3, 2, 0], [-10, -4, 4], [1, 2, 3]]
 
         with self.assertRaisesRegex(ValueError, 'Must have the same size') as _:
-            print(pymatrix.sum_of(A=self.A, B=B), [[5, 3, -1], [-10, -2, 7]])
+            self.assertEqual(pymatrix.sum_of(A=self.A, B=B), None)
 
     def test_identity_matrix(self):
         """Testing the identity matrix of two given matrix"""
@@ -47,3 +47,22 @@ class TestPyMatrix(unittest.TestCase):
 
         self.assertEqual(pymatrix.scalar_multiplication(A=self.A, c=0.5),
                          [[1, 0.5, -0.5], [0, 1, 1.5]])
+
+    def test_matrix_product(self):
+        """Testing the matrix product of two given matrix"""
+        A = [[-1, 3, 1], [1, 2, -2]]  # 2x3
+        B = [[1, -1, 4], [1, 5, 1], [0, -2, 2]]  # 3x3
+        C = [[2, 14, 1], [3, 13, 2]]  # 2x3
+
+        self.assertEqual(pymatrix.matrix_product(A=A, B=B), C)
+
+    def test_matrix_product_with_invalid_size(self):
+        """Testing the matrix product of two given matrix"""
+        A = [[-1, 3], [1, 2], [0, -2]]  # 3x2
+        B = [[1, -1, 4], [1, 5, 1], [0, -2, 2]]  # 3x3
+        C = None  # Error
+
+        with self.assertRaisesRegex(
+                ValueError,
+                'Number of columns of A must equal to number of rows of B') as _:
+            self.assertEqual(pymatrix.matrix_product(A=A, B=B), C)
